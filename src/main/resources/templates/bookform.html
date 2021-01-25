@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book form</title>
+    <style th:replace="styles.html :: style"></style>
+</head>
+<body>
+<div th:replace="styles.html :: style"></div>
+<h1 class="header-container">Book Form</h1>
+<ul th:if="${#fields.hasErrors('${book.*}')}">
+    <li th:each="error : ${#fields.errors('${book.*}')}" th:text="${error}"/>
+</ul>
+<form th:action="@{/books/book}" method="post" th:object="${book}">    <p>Barcode: <input th:field="*{barcode}"></p>
+    <p>Title:
+        <input type="text" th:field="*{title}" th:errorclass="error"/>
+        <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="error"/>
+    </p>
+    <p>Genre: <input th:field="*{genre}"></p>
+    <p>Author: <input th:field="*{author}"></p>
+    <p>Quantity: <input th:field="*{quantity}"></p>
+    <p>Price: <input th:field="*{price}"></p>
+    <p>Release year: <input th:field="*{date}"></p>
+
+
+    <p> <input type="submit" th:href="@{/}"/> </p>
+</form>
+</body>
+</html>

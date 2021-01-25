@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book</title>
+    <style th:replace="styles.html :: style"></style>
+</head>
+<body>
+<div th:replace="styles.html :: style"></div>
+<a th:href="@{/}" > Home</a>
+<table >
+    <tr class="header-container">
+        <td th:text="#{title}"></td>
+        <td th:text="#{author}"></td>
+        <td th:text="#{releasedate}"></td>
+        <td th:text="#{genre}"></td>
+        <td th:text="#{price}"></td>
+    </tr>
+    <tr>
+        <td th:text="${book.title}"></td>
+        <td th:text="${book.author}"></td>
+        <td th:text="${book.date}"></td>
+        <td th:text="${book.genre}"></td>
+        <td th:text="${book.getPrice()}"></td>
+    </tr>
+</table>
+
+<p>
+    <a th:text="#{add}" th:href="@{/cart/add/{barcode}(barcode=${barcode})}"></a>
+</p>
+
+<p> <a th:text="#{edit}" th:href="@{books/book/{barcode}(barcode=${book.barcode})}"></a> </p>
+<p> <a th:text="#{delete}" th:href="@{books/book/{barcode}/delete(barcode=${book.barcode})}"></a> </p>
+
+</body>
+</html>

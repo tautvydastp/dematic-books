@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+    <style th:replace="styles.html :: style"></style>
+</head>
+<body>
+<div th:replace="styles.html :: style"></div>
+<table >
+    <a th:text="Home" th:href="@{/}"/>
+    <thead>
+    <tr class="header-container">
+        <td th:text="#{title}"></td>
+        <td th:text="#{price}"></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book : ${cart}">
+        <td th:text="${book.title}" />
+        <td th:text="${book.price}" />
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

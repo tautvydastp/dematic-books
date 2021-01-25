@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Books List</title>
+    <style th:replace="styles.html :: style"></style>
+</head>
+<body>
+
+<div th:replace="styles.html :: style"></div>
+<br>
+<form th:action="@{/books/}" method="get">
+    <input type="text" name="barcode" th:placeholder="barcode">
+</form>
+<br>
+<a th:href="@{?lang=lt}">LT</a>
+<a th:href="@{?lang=en}">EN</a>
+<table>
+
+<thead>
+<tr class="header-container" >
+
+    <td class="info" th:text="#{title}"></td>
+    <td class="info" th:text="#{genre}"></td>
+    <td class="info" th:text="#{author}"></td>
+    <td class="info" th:text="#{quantity}"></td>
+</tr>
+</thead>
+    <tbody>
+<tr  th:each="book : ${books}">
+    <td th:text="${book.title}"></td>
+    <td th:text="${book.genre}"></td>
+    <td th:text="${book.author}"></td>
+    <td th:text="${book.quantity}"></td>
+    <td>
+        <a th:text="#{more}" th:href="@{/books/{barcode}(barcode=${book.barcode})}"></a>
+    </td>
+</tr>
+</tbody>
+</table>
+    <br>
+    <a th:href="@{/books/book}"
+       th:text="#{new}">
+    </a>
+    <a class="cart" th:href="@{/cart}" th:text="#{cart}"></a>
+
+</body>
+</html>
